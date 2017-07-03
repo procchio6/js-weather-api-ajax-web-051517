@@ -1,15 +1,32 @@
 function getFahrenheits(result){
-  // Your code goes here
+  return result.hourly_forecast.map(hourData => {
+    return hourData.temp.english
+  })
 }
 
 function getHours(result){
-  // Your code goes here
+  return result.hourly_forecast.map(hourData => {
+    return hourData.FCTTIME.hour
+  })
 }
 
 function generateDataSet(labels, data) {
-  // Your code goes here
+  return {
+    labels: labels,
+    datasets: [{
+      data: data,
+      label: 'New York, NY'
+    }]
+  }
 }
 
 function makeAjaxRequest(endpoint, success) {
-  // Your code goes here
+  $.ajax({
+    url: endpoint,
+    method: 'GET',
+    success: success,
+    error: function (error) {
+      console.log('There has been an error retrieving data!');
+    }
+  })
 }
